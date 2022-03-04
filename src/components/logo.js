@@ -1,10 +1,10 @@
-import React from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
-import Img from "gatsby-image"
-import { StaticQuery, graphql } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import Img from "gatsby-image";
+import { StaticQuery, graphql } from "gatsby";
 
-import { siteShortTitle } from "../../config"
+import { siteShortTitle } from "../../config";
 
 const StyledLogo = styled.div`
   position: relative;
@@ -18,34 +18,39 @@ const StyledLogo = styled.div`
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
-`
+`;
 
-const Logo = ({ data, color, size }) => (
-  <StaticQuery
-    query={graphql`
-      {
-        image: allFile(filter: { relativePath: { eq: "favicon.png" } }) {
-          nodes {
-            childImageSharp {
-              fixed(width: 50, height: 50, quality: 90) {
-                ...GatsbyImageSharpFixed
-              }
-            }
-          }
-        }
-      }
-    `}
-    render={data => {
-      console.log(data)
-      return <Img fixed={data.image.nodes[0].childImageSharp.fixed} />
-    }}
-  />
-)
+// const Logo = ({ data, color, size }) => (
+//   <StaticQuery
+//     query={graphql`
+//       {
+//         image: allFile(filter: { relativePath: { eq: "favicon.png" } }) {
+//           nodes {
+//             childImageSharp {
+//               fixed(width: 50, height: 50, quality: 90) {
+//                 ...GatsbyImageSharpFixed
+//               }
+//             }
+//           }
+//         }
+//       }
+//     `}
+//     render={data => {
+//       console.log(data)
+//       return <Img fixed={data.image.nodes[0].childImageSharp.fixed} />
+//     }}
+//   />
+// )
+const Logo = ({ size, color }) => (
+  <StyledLogo color={color} size={size}>
+    {siteShortTitle}
+  </StyledLogo>
+);
 
 Logo.propTypes = {
   size: PropTypes.string,
   color: PropTypes.string,
   data: PropTypes.object.isRequired,
-}
+};
 
-export default Logo
+export default Logo;

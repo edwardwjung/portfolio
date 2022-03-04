@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useRef, useContext } from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
-import { MDXRenderer } from "gatsby-plugin-mdx"
-import Img from "gatsby-image"
-import VisibilitySensor from "react-visibility-sensor"
-import { motion } from "framer-motion"
-import { Link } from "gatsby"
+import React, { useState, useEffect, useRef, useContext } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import Img from "gatsby-image";
+import VisibilitySensor from "react-visibility-sensor";
+import { motion } from "framer-motion";
+import { Link } from "gatsby";
 
-import { useOnScreen } from "../../hooks"
-import Context from "../../context"
-import ContentWrapper from "../../styles/contentWrapper"
-import Underlining from "../../styles/underlining"
-import Button from "../../styles/button"
-import SmallButton from "../../styles/small-button"
-import Icon from "../../components/icons"
-import { lightTheme, darkTheme } from "../../styles/theme"
+import { useOnScreen } from "../../hooks";
+import Context from "../../context";
+import ContentWrapper from "../../styles/contentWrapper";
+import Underlining from "../../styles/underlining";
+import Button from "../../styles/button";
+import SmallButton from "../../styles/small-button";
+import Icon from "../../components/icons";
+import { lightTheme, darkTheme } from "../../styles/theme";
 
 const StyledSection = styled.section`
   width: 100%;
@@ -29,7 +29,7 @@ const StyledSection = styled.section`
       margin: 0 auto;
     }
   }
-`
+`;
 
 const StyledContentWrapper = styled(ContentWrapper)`
   && {
@@ -105,7 +105,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
       }
     }
   }
-`
+`;
 
 const StyledProject = styled(motion.div)`
   display: flex;
@@ -165,6 +165,13 @@ const StyledProject = styled(motion.div)`
         margin-bottom: 1rem;
       }
     }
+    .button {
+      &:hover {
+        transform: translate3d(0px, -0.125rem, 0px);
+        box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.32);
+      }
+    }
+    
     .links {
       display: flex;
       justify-content: flex-start;
@@ -175,11 +182,13 @@ const StyledProject = styled(motion.div)`
         display: inline-block;
         margin-right: 1rem;
       }
+
       svg {
         width: 1.3rem;
         height: 1.3rem;
         transition: all 0.3s ease-out;
       }
+
       svg:hover {
         fill: ${({ theme }) => theme.colors.primary};
       }
@@ -200,63 +209,63 @@ const StyledProject = styled(motion.div)`
       height: 18.75rem; /* Previosly 18.75rem */
     }
   }
-`
+`;
 
 const Projects = ({ content, showViewMore = true, limit = 0 }) => {
-  const { darkMode } = useContext(Context).state
-  const sectionDetails = content[0].node
-  const projects = content.slice(1, limit === 0 ? content.length : limit + 1)
+  const { darkMode } = useContext(Context).state;
+  const sectionDetails = content[0].node;
+  const projects = content.slice(1, limit === 0 ? content.length : limit + 1);
 
   // visibleProject is needed to show which project is currently
   // being viewed in the horizontal slider on mobile and tablet
-  const [visibleProject, setVisibleProject] = useState(1)
+  const [visibleProject, setVisibleProject] = useState(1);
 
   // projects don't track the visibility by using the onScreen hook
   // instead they use react-visibility-sensor, therefore their visibility
   // is also stored differently
-  const [onScreen, setOnScreen] = useState({})
-  const handleOnScreen = el => {
+  const [onScreen, setOnScreen] = useState({});
+  const handleOnScreen = (el) => {
     if (!onScreen[el]) {
-      const updatedOnScreen = { ...onScreen }
-      updatedOnScreen[el] = true
-      setOnScreen(updatedOnScreen)
+      const updatedOnScreen = { ...onScreen };
+      updatedOnScreen[el] = true;
+      setOnScreen(updatedOnScreen);
     }
-  }
+  };
   const pVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
 
   useEffect(() => {
     // mobile and tablet only: set first project as visible in the
     // horizontal slider
-    setVisibleProject(1)
+    setVisibleProject(1);
     // required for animations: set visibility for all projects to
     // "false" initially
-    let initial = {}
-    projects.forEach(project => {
-      initial[project.node.frontmatter.position] = false
-    })
-    initial[1] = true
-    setOnScreen(initial)
+    let initial = {};
+    projects.forEach((project) => {
+      initial[project.node.frontmatter.position] = false;
+    });
+    initial[1] = true;
+    setOnScreen(initial);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   // Required for animating the title
-  const tRef = useRef()
-  const tOnScreen = useOnScreen(tRef)
+  const tRef = useRef();
+  const tOnScreen = useOnScreen(tRef);
   const tVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
-  }
+  };
 
   // Required for animating the button
-  const bRef = useRef()
-  const bOnScreen = useOnScreen(bRef)
+  const bRef = useRef();
+  const bOnScreen = useOnScreen(bRef);
   const bVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
-  }
+  };
 
   return (
     <StyledSection id="projects">
@@ -273,8 +282,8 @@ const Projects = ({ content, showViewMore = true, limit = 0 }) => {
         </motion.div>
         <div className="projects">
           {projects.map((project, key) => {
-            const { body, frontmatter } = project.node
-            console.log(key)
+            const { body, frontmatter } = project.node;
+            console.log(key);
             return (
               <VisibilitySensor
                 key={key}
@@ -300,7 +309,7 @@ const Projects = ({ content, showViewMore = true, limit = 0 }) => {
                     </div>
                     <MDXRenderer>{body}</MDXRenderer>
                     <div className="tags">
-                      {frontmatter.tags.map(tag => (
+                      {frontmatter.tags.map((tag) => (
                         <Underlining key={tag} highlight>
                           {tag}
                         </Underlining>
@@ -354,9 +363,49 @@ const Projects = ({ content, showViewMore = true, limit = 0 }) => {
                           <SmallButton>App Store</SmallButton>
                         </a>
                       )}
-                      <Link to={project.node.fields.slug}>
+                      {frontmatter.presentation && (
+                        <a
+                          href={frontmatter.presentation}
+                          target="_blank"
+                          rel="nofollow noopener noreferrer"
+                          aria-label="External Link"
+                        >
+                          {/*<Underlining>
+                            <b>App Store</b>
+                          </Underlining>*/}
+                          <SmallButton>Presentation</SmallButton>
+                        </a>
+                      )}
+                      {frontmatter.video && (
+                        <a
+                          href={frontmatter.video}
+                          target="_blank"
+                          rel="nofollow noopener noreferrer"
+                          aria-label="External Link"
+                        >
+                          {/*<Underlining>
+                            <b>App Store</b>
+                          </Underlining>*/}
+                          <SmallButton>Video</SmallButton>
+                        </a>
+                      )}
+                      {frontmatter.publication && (
+                        <a
+                          href={frontmatter.publication}
+                          target="_blank"
+                          rel="nofollow noopener noreferrer"
+                          aria-label="External Link"
+                          className="effect effect-1"
+                        >
+                          {/*<Underlining>
+                            <b>App Store</b>
+                          </Underlining>*/}
+                          <SmallButton>Publication</SmallButton>
+                        </a>
+                      )}
+                      {/* <Link to={project.node.fields.slug}>
                         <SmallButton type="light">More</SmallButton>
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
                   {/* If image in viewport changes, update state accordingly */}
@@ -370,7 +419,7 @@ const Projects = ({ content, showViewMore = true, limit = 0 }) => {
                   </VisibilitySensor>
                 </StyledProject>
               </VisibilitySensor>
-            )
+            );
           })}
         </div>
       </StyledContentWrapper>
@@ -387,14 +436,14 @@ const Projects = ({ content, showViewMore = true, limit = 0 }) => {
         >
           <Link to="/projects">
             <Button type="button" textAlign="center" center>
-              View All Projects
+              See more
             </Button>
           </Link>
         </motion.a>
       )}
     </StyledSection>
-  )
-}
+  );
+};
 
 Projects.propTypes = {
   content: PropTypes.arrayOf(
@@ -407,6 +456,6 @@ Projects.propTypes = {
   ).isRequired,
   showViewMore: PropTypes.bool.isRequired,
   limit: PropTypes.number.isRequired,
-}
+};
 
-export default Projects
+export default Projects;

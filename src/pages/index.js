@@ -139,6 +139,9 @@ export const pageQuery = graphql`
             external
             github
             appStore
+            presentation
+            video
+            publication
             screenshot {
               childImageSharp {
                 fluid(maxWidth: 1800, quality: 100) {

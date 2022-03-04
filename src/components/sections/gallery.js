@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useRef, useContext } from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
-import { MDXRenderer } from "gatsby-plugin-mdx"
-import Img from "gatsby-image"
-import VisibilitySensor from "react-visibility-sensor"
-import { motion } from "framer-motion"
-import { Link } from "gatsby"
+import React, { useState, useEffect, useRef, useContext } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import Img from "gatsby-image";
+import VisibilitySensor from "react-visibility-sensor";
+import { motion } from "framer-motion";
+import { Link } from "gatsby";
 
-import { useOnScreen } from "../../hooks"
-import Context from "../../context"
-import ContentWrapper from "../../styles/contentWrapper"
-import Underlining from "../../styles/underlining"
-import Button from "../../styles/button"
-import Icon from "../../components/icons"
-import { lightTheme, darkTheme } from "../../styles/theme"
+import { useOnScreen } from "../../hooks";
+import Context from "../../context";
+import ContentWrapper from "../../styles/contentWrapper";
+import Underlining from "../../styles/underlining";
+import Button from "../../styles/button";
+import Icon from "../../components/icons";
+import { lightTheme, darkTheme } from "../../styles/theme";
 
 const StyledSection = styled.section`
   width: 100%;
@@ -28,7 +28,7 @@ const StyledSection = styled.section`
       margin: 0 auto;
     }
   }
-`
+`;
 
 const StyledContentWrapper = styled(ContentWrapper)`
   .post-feed {
@@ -297,9 +297,9 @@ const StyledContentWrapper = styled(ContentWrapper)`
     box-shadow: #fff 0 0 0 5px;
     transform: rotate(45deg);
   }
-`
+`;
 
-const PostCard = props => (
+const PostCard = (props) => (
   <article
     className={`post-card ${props.postClass} ${
       props.node.frontmatter.screenshot.childImageSharp
@@ -324,7 +324,7 @@ const PostCard = props => (
       </div>
     </Link>
   </article>
-)
+);
 
 PostCard.propTypes = {
   node: PropTypes.shape({
@@ -336,64 +336,64 @@ PostCard.propTypes = {
   }).isRequired,
   postClass: PropTypes.isRequired,
   count: PropTypes.is,
-}
+};
 
 const Gallery = ({ content }) => {
-  const { darkMode } = useContext(Context).state
-  const sectionDetails = content[0].node
-  const projects = content.slice(1, content.length)
+  const { darkMode } = useContext(Context).state;
+  const sectionDetails = content[0].node;
+  const projects = content.slice(1, content.length);
 
   // visibleProject is needed to show which project is currently
   // being viewed in the horizontal slider on mobile and tablet
-  const [visibleProject, setVisibleProject] = useState(1)
+  const [visibleProject, setVisibleProject] = useState(1);
 
   // projects don't track the visibility by using the onScreen hook
   // instead they use react-visibility-sensor, therefore their visibility
   // is also stored differently
-  const [onScreen, setOnScreen] = useState({})
-  const handleOnScreen = el => {
+  const [onScreen, setOnScreen] = useState({});
+  const handleOnScreen = (el) => {
     if (!onScreen[el]) {
-      const updatedOnScreen = { ...onScreen }
-      updatedOnScreen[el] = true
-      setOnScreen(updatedOnScreen)
+      const updatedOnScreen = { ...onScreen };
+      updatedOnScreen[el] = true;
+      setOnScreen(updatedOnScreen);
     }
-  }
+  };
   const pVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
 
   useEffect(() => {
     // mobile and tablet only: set first project as visible in the
     // horizontal slider
-    setVisibleProject(1)
+    setVisibleProject(1);
     // required for animations: set visibility for all projects to
     // "false" initially
-    let initial = {}
-    projects.forEach(project => {
-      initial[project.node.frontmatter.position] = false
-    })
-    setOnScreen(initial)
+    let initial = {};
+    projects.forEach((project) => {
+      initial[project.node.frontmatter.position] = false;
+    });
+    setOnScreen(initial);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   // Required for animating the title
-  const tRef = useRef()
-  const tOnScreen = useOnScreen(tRef)
+  const tRef = useRef();
+  const tOnScreen = useOnScreen(tRef);
   const tVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
-  }
+  };
 
   // Required for animating the button
-  const bRef = useRef()
-  const bOnScreen = useOnScreen(bRef)
+  const bRef = useRef();
+  const bOnScreen = useOnScreen(bRef);
   const bVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
-  }
+  };
 
-  let postCounter = 0
+  let postCounter = 0;
 
   return (
     <StyledSection id="projects">
@@ -410,7 +410,7 @@ const Gallery = ({ content }) => {
         </motion.div>
         <div className="post-feed">
           {projects.map(({ node }, key) => {
-            postCounter++
+            postCounter++;
             return (
               <VisibilitySensor
                 key={key}
@@ -425,7 +425,7 @@ const Gallery = ({ content }) => {
                   postClass={`post`}
                 />
               </VisibilitySensor>
-            )
+            );
           })}
         </div>
       </StyledContentWrapper>
@@ -441,13 +441,13 @@ const Gallery = ({ content }) => {
       >
         <Link to="/projects">
           <Button type="button" textAlign="center" center>
-            View All Projects
+            See more
           </Button>
         </Link>
       </motion.a>
     </StyledSection>
-  )
-}
+  );
+};
 
 Gallery.propTypes = {
   content: PropTypes.arrayOf(
@@ -458,6 +458,6 @@ Gallery.propTypes = {
       }).isRequired,
     }).isRequired
   ).isRequired,
-}
+};
 
-export default Gallery
+export default Gallery;

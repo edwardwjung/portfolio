@@ -1,21 +1,21 @@
-import React, { useEffect, useContext } from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
-import Img from "gatsby-image"
-import { MDXRenderer } from "gatsby-plugin-mdx"
-import { motion, useAnimation } from "framer-motion"
+import React, { useEffect, useContext } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import Img from "gatsby-image";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import { motion, useAnimation } from "framer-motion";
 
-import Context from "../../context/"
-import ContentWrapper from "../../styles/contentWrapper"
-import Underlining from "../../styles/underlining"
-import Social from "../social"
-import { lightTheme, darkTheme } from "../../styles/theme"
+import Context from "../../context/";
+import ContentWrapper from "../../styles/contentWrapper";
+import Underlining from "../../styles/underlining";
+import Social from "../social";
+import { lightTheme, darkTheme } from "../../styles/theme";
 
 const StyledSection = styled.section`
   width: 100%;
   height: auto;
   background: ${({ theme }) => theme.colors.background};
-`
+`;
 
 const StyledContentWrapper = styled(ContentWrapper)`
   && {
@@ -61,20 +61,20 @@ const StyledContentWrapper = styled(ContentWrapper)`
       margin-bottom: 2rem;
     }
   }
-`
+`;
 
-const AnimatedUnderlining = motion.custom(Underlining)
+const AnimatedUnderlining = motion.custom(Underlining);
 
 const Hero = ({ content, showSocial }) => {
-  const { frontmatter, body } = content[0].node
-  const { isIntroDone, darkMode } = useContext(Context).state
-  console.log(content)
+  const { frontmatter, body } = content[0].node;
+  const { isIntroDone, darkMode } = useContext(Context).state;
+  console.log(content);
 
   // Controls to orchestrate animations of greetings, emoji, social profiles, underlining
-  const gControls = useAnimation()
-  const eControls = useAnimation()
-  const sControls = useAnimation()
-  const uControls = useAnimation()
+  const gControls = useAnimation();
+  const eControls = useAnimation();
+  const sControls = useAnimation();
+  const uControls = useAnimation();
 
   // Start Animations after the splashScreen sequence is done
   useEffect(() => {
@@ -83,27 +83,27 @@ const Hero = ({ content, showSocial }) => {
         eControls.start({
           rotate: [0, -10, 12, -10, 9, 0, 0, 0, 0, 0, 0],
           transition: { duration: 2.5, loop: 3, repeatDelay: 1 },
-        })
+        });
         await gControls.start({
           opacity: 1,
           y: 0,
           transition: { delay: 0.4 },
-        })
+        });
         await sControls.start({
           opacity: 1,
           x: 0,
-        })
+        });
         // Animate underlining to hover state
         await uControls.start({
           boxShadow: `inset 0 -2rem 0 ${
             darkMode ? darkTheme.colors.secondary : lightTheme.colors.secondary
           }`,
           transition: { delay: 0.4, ease: "circOut" },
-        })
+        });
       }
-    }
-    pageLoadSequence()
-  }, [isIntroDone, darkMode, eControls, gControls, sControls, uControls])
+    };
+    pageLoadSequence();
+  }, [isIntroDone, darkMode, eControls, gControls, sControls, uControls]);
 
   return (
     <StyledSection id="hero">
@@ -119,7 +119,7 @@ const Hero = ({ content, showSocial }) => {
           </h1>
           <h2
             className="subtitle"
-            style={{ color: frontmatter.color ? frontmatter.color : "#e74c3c" }}
+            style={{ color: frontmatter.color ? frontmatter.color : "#0000FF" }}
           >
             {frontmatter.subtitlePrefix}{" "}
             <AnimatedUnderlining animate={uControls} big>
@@ -142,8 +142,8 @@ const Hero = ({ content, showSocial }) => {
         )}
       </StyledContentWrapper>
     </StyledSection>
-  )
-}
+  );
+};
 
 Hero.propTypes = {
   content: PropTypes.arrayOf(
@@ -155,6 +155,6 @@ Hero.propTypes = {
     }).isRequired
   ).isRequired,
   showSocial: PropTypes.bool.isRequired,
-}
+};
 
-export default Hero
+export default Hero;

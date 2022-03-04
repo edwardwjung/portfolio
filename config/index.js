@@ -1,10 +1,10 @@
 module.exports = {
   //-- SITE SETTINGS -----
-  author: "@anshaysaboo",
-  siteTitle: "Anshay Saboo's Portfolio",
-  siteShortTitle: "Anshay Saboo", // Used as logo text in header, footer, and splash screen
+  author: "@dwardoo",
+  siteTitle: "Edward Jung's Portfolio",
+  siteShortTitle: "ej.", // Used as logo text in header, footer, and splash screen
   siteDescription: "Learn about me, my projects, my skills, and goals.",
-  siteUrl: "https://anshaysaboo.com",
+  siteUrl: "https://edwardwjung.com",
   siteLanguage: "en_US",
   siteIcon: "content/favicon.png", // Relative to gatsby-config file
   seoTitleSuffix: "Portfolio", // SEO title syntax will be e.g. "Imprint - {seoTitleSuffix}"
@@ -57,17 +57,26 @@ module.exports = {
   socialMedia: [
     {
       name: "Linkedin",
-      url: "https://www.linkedin.com/in/anshaysaboo/",
+      url: "https://www.linkedin.com/in/edward-jung-91951b202/",
     },
     {
       name: "Github",
-      url: "https://github.com/anshaysaboo",
+      url: "https://github.com/dwardoo",
+    },
+    {
+      name: "Mail",
+      url:
+        "https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=edwardwjung@gmail.com",
     },
   ],
 
   //-- NAVIGATION SETTINGS -----
   navLinks: {
     menu: [
+      {
+        name: "",
+        url: "/#contact",
+      },
       {
         name: "About Me",
         url: "/#about",
@@ -76,16 +85,14 @@ module.exports = {
         name: "Projects",
         url: "/projects",
       },
-      {
-        name: "Contact",
-        url: "/#contact",
-      },
     ],
     button: {
-      useFileName: true,
-      name: "Resume",
-      fileName: "Resume.pdf", // the file has to be placed inside the static folder at the root level
-      url: "", // if useFileName=false, you can set an anchor link here and use the button for navigational purposes
+      useFileName: false,
+      name: "Contact",
+      url: "/#contact",
+      // name: "Resume",
+      // fileName: "Resume.pdf", // the file has to be placed inside the static folder at the root level
+      // url: "", // if useFileName=false, you can set an anchor link here and use the button for navigational purposes
     },
   },
   footerLinks: [
@@ -98,4 +105,4 @@ module.exports = {
       url: "/imprint",
     },*/
   ],
-}
+};

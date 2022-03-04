@@ -1,21 +1,21 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { graphql } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
 
-import GlobalStateProvider from "../context/provider"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Hero from "../components/sections/hero"
-import Articles from "../components/sections/articles"
-import About from "../components/sections/about"
-import Interests from "../components/sections/interests"
-import Projects from "../components/sections/projects"
-import Contact from "../components/sections/contact"
-import { seoTitleSuffix } from "../../config"
+import GlobalStateProvider from "../context/provider";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import Hero from "../components/sections/hero";
+import Articles from "../components/sections/articles";
+import About from "../components/sections/about";
+import Interests from "../components/sections/interests";
+import Projects from "../components/sections/projects";
+import Contact from "../components/sections/contact";
+import { seoTitleSuffix } from "../../config";
 
 const ProjectsPage = ({ data }) => {
-  const { frontmatter } = data.index.edges[0].node
-  const { seoTitle, useSeoTitleSuffix, useSplashScreen } = frontmatter
+  const { frontmatter } = data.index.edges[0].node;
+  const { seoTitle, useSeoTitleSuffix, useSplashScreen } = frontmatter;
 
   const globalState = {
     // if useSplashScreen=false, we skip the intro by setting isIntroDone=true
@@ -23,9 +23,9 @@ const ProjectsPage = ({ data }) => {
     // darkMode is initially disabled, a hook inside the Layout component
     // will check the user's preferences and switch to dark mode if needed
     darkMode: false,
-  }
+  };
 
-  console.log(data.hero)
+  console.log(data.hero);
 
   return (
     <GlobalStateProvider initialState={globalState}>
@@ -58,14 +58,14 @@ const ProjectsPage = ({ data }) => {
         <Projects content={data.projects.edges} showViewMore={false} />
       </Layout>
     </GlobalStateProvider>
-  )
-}
+  );
+};
 
 ProjectsPage.propTypes = {
   data: PropTypes.object.isRequired,
-}
+};
 
-export default ProjectsPage
+export default ProjectsPage;
 
 export const pageQuery = graphql`
   {
@@ -118,7 +118,10 @@ export const pageQuery = graphql`
             category
             emoji
             external
+            video
             github
+            presentation
+            publication
             appStore
             screenshot {
               childImageSharp {
@@ -137,4 +140,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

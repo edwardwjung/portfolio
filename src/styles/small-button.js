@@ -1,6 +1,6 @@
-import React from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const StyledButtonDark = styled.button`
   width: 100%;
@@ -17,7 +17,9 @@ const StyledButtonDark = styled.button`
   border-radius: ${({ theme }) => theme.borderRadius};
   text-decoration: none;
   text-align: ${({ textAlign }) => (textAlign ? textAlign : "center")};
-  &:hover,
+  &:hover {
+    transform: translate3d(0px, -0.125rem, 0px);
+  }
   &:focus,
   &:active {
     cursor: pointer;
@@ -29,13 +31,13 @@ const StyledButtonDark = styled.button`
     margin-right: 0.3rem;
     margin-bottom: -0.175rem;
   }
-`
+`;
 
 const StyledButtonLight = styled(StyledButtonDark)`
   color: ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.background};
   border: 0.125rem solid ${({ theme }) => theme.colors.primary};
-`
+`;
 
 const SmallButton = ({
   onClick,
@@ -52,8 +54,8 @@ const SmallButton = ({
     <StyledButtonDark onClick={onClick} textAlign={textAlign} center={center}>
       {children}
     </StyledButtonDark>
-  )
-}
+  );
+};
 
 SmallButton.propTypes = {
   onClick: PropTypes.func,
@@ -64,6 +66,6 @@ SmallButton.propTypes = {
     PropTypes.node,
   ]).isRequired,
   type: PropTypes.string,
-}
+};
 
-export default SmallButton
+export default SmallButton;

@@ -1,26 +1,26 @@
-import React from "react"
-import { graphql } from "gatsby"
-import styled from "styled-components"
-import { MDXRenderer } from "gatsby-plugin-mdx"
-import Img from "gatsby-image"
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
+import React from "react";
+import { graphql } from "gatsby";
+import styled from "styled-components";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import Img from "gatsby-image";
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
 
-import Layout from "../components/layout"
-import GlobalStateProvider from "../context/provider"
-import ContentWrapper from "../styles/contentWrapper"
-import SEO from "../components/seo"
-import Hero from "../components/sections/hero"
-import SmallButton from "../styles/small-button"
-import Icon from "../components/icons"
-import Underlining from "../styles/underlining"
+import Layout from "../components/layout";
+import GlobalStateProvider from "../context/provider";
+import ContentWrapper from "../styles/contentWrapper";
+import SEO from "../components/seo";
+import Hero from "../components/sections/hero";
+import SmallButton from "../styles/small-button";
+import Icon from "../components/icons";
+import Underlining from "../styles/underlining";
 
 const StyledSection = styled.section`
   width: 100%;
   height: auto;
   background: ${({ theme }) => theme.colors.background};
   margin-top: 2rem;
-`
+`;
 
 const StyledContentWrapper = styled(ContentWrapper)`
   && {
@@ -83,17 +83,17 @@ const StyledContentWrapper = styled(ContentWrapper)`
         fill: ${({ theme }) => theme.colors.primary};
       }
     }
-`
+`;
 
 export default function ProjectPost({ data }) {
   const globalState = {
     isIntroDone: true,
     darkMode: false,
-  }
+  };
 
-  const post = data.mdx
-  const { frontmatter } = post
-  const { title, subtitle, color } = frontmatter
+  const post = data.mdx;
+  const { frontmatter } = post;
+  const { title, subtitle, color } = frontmatter;
   return (
     <GlobalStateProvider initialState={globalState}>
       <Layout>
@@ -118,7 +118,7 @@ export default function ProjectPost({ data }) {
             />
             <div className="details">
               <div className="tags">
-                {frontmatter.tags.map(tag => (
+                {frontmatter.tags.map((tag) => (
                   <Underlining key={tag} highlight>
                     {tag}
                   </Underlining>
@@ -155,6 +155,39 @@ export default function ProjectPost({ data }) {
                     <SmallButton>App Store</SmallButton>
                   </a>
                 )}
+                {frontmatter.presentation && (
+                  <a
+                    href={frontmatter.presentation}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    aria-label="External Link"
+                  >
+                    <SmallButton>Presentation</SmallButton>
+                  </a>
+                )}
+                {frontmatter.video && (
+                  <a
+                    href={frontmatter.video}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    aria-label="External Link"
+                  >
+                    <SmallButton>Video</SmallButton>
+                  </a>
+                )}
+                {frontmatter.publication && (
+                  <a
+                    href={frontmatter.publication}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    aria-label="External Link"
+                  >
+                    {/*<Underlining>
+                            <b>App Store</b>
+                          </Underlining>*/}
+                    <SmallButton>Publication</SmallButton>
+                  </a>
+                )}
               </div>
             </div>
             <Img
@@ -166,7 +199,7 @@ export default function ProjectPost({ data }) {
         </StyledSection>
       </Layout>
     </GlobalStateProvider>
-  )
+  );
 }
 
 ProjectPost.propTypes = {
@@ -176,7 +209,7 @@ ProjectPost.propTypes = {
       frontmatter: PropTypes.object.isRequired,
     }).isRequired,
   }).isRequired,
-}
+};
 
 export const query = graphql`
   query($slug: String!) {
@@ -190,6 +223,9 @@ export const query = graphql`
         external
         github
         appStore
+        presentation
+        video
+        publication
         screenshot {
           childImageSharp {
             fluid(maxWidth: 2000, quality: 100) {
@@ -202,4 +238,4 @@ export const query = graphql`
       body
     }
   }
-`
+`;

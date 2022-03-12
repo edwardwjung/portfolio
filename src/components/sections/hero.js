@@ -119,7 +119,7 @@ const Hero = ({ content, showSocial }) => {
           </h1>
           <h2
             className="subtitle"
-            style={{ color: frontmatter.color ? frontmatter.color : "#0000FF" }}
+            style={{ color: frontmatter.color ? frontmatter.color : "#69b4ff" }}
           >
             {frontmatter.subtitlePrefix}{" "}
             <AnimatedUnderlining animate={uControls} big>

@@ -42,7 +42,7 @@ const StyledLogo = styled.div`
 //   />
 // )
 const Logo = ({ size, color }) => (
-  <StyledLogo color={color} size={size}>
+  <StyledLogo color={"#69b4ff"} size={size}>
     {siteShortTitle}
   </StyledLogo>
 );

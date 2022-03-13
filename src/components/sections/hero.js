@@ -69,7 +69,7 @@ const Hero = ({ content, showSocial }) => {
   const { frontmatter, body } = content[0].node;
   const { isIntroDone, darkMode } = useContext(Context).state;
   console.log("heyy");
-  console.log(frontmatter.icon);
+  console.log(frontmatter.title);
 
   // Controls to orchestrate animations of greetings, emoji, social profiles, underlining
   const gControls = useAnimation();
@@ -106,55 +106,100 @@ const Hero = ({ content, showSocial }) => {
     pageLoadSequence();
   }, [isIntroDone, darkMode, eControls, gControls, sControls, uControls]);
 
-  return (
-    <StyledSection id="hero">
-      <StyledContentWrapper>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={gControls}
-          data-testid="animated-heading"
-        >
-          <h1 className="title">
-            <div className="greetings">
-              {frontmatter.greetings}
-              <motion.div
-                animate={eControls}
-                style={{ originX: 0.7, originY: 0.7 }}
-              >
-                <Img
-                  className="emoji"
-                  fluid={frontmatter.greetingicon.childImageSharp.fluid}
-                />
-              </motion.div>
-            </div>
-            {frontmatter.title}
-          </h1>
-          <h2
-            className="subtitle"
-            style={{ color: frontmatter.color ? frontmatter.color : "#69b4ff" }}
+  if (frontmatter.title === "I'm Edward Jung") {
+    return (
+      <StyledSection id="hero">
+        <StyledContentWrapper>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={gControls}
+            data-testid="animated-heading"
           >
-            {frontmatter.subtitlePrefix}{" "}
-            <AnimatedUnderlining animate={uControls} big>
-              {frontmatter.subtitle}
-            </AnimatedUnderlining>
-          </h2>
-          <div className="description">
-            {body && <MDXRenderer>{body}</MDXRenderer>}
-          </div>
-        </motion.div>
-        {showSocial && (
-          <motion.div initial={{ opacity: 0, x: 20 }} animate={sControls}>
-            <Social
-              fontSize=".95rem"
-              padding=".3rem 1.25rem"
-              width="auto"
-              withIcon={true}
-            />
+            <h1 className="title">
+              <div className="greetings">
+                {frontmatter.greetings}
+                <motion.div
+                  animate={eControls}
+                  style={{ originX: 0.7, originY: 0.7 }}
+                >
+                  <Img
+                    className="emoji"
+                    fluid={frontmatter.greetingicon.childImageSharp.fluid}
+                  />
+                </motion.div>
+              </div>
+              {frontmatter.title}
+            </h1>
+            <h2
+              className="subtitle"
+              style={{
+                color: frontmatter.color ? frontmatter.color : "#69b4ff",
+              }}
+            >
+              {frontmatter.subtitlePrefix}{" "}
+              <AnimatedUnderlining animate={uControls} big>
+                {frontmatter.subtitle}
+              </AnimatedUnderlining>
+            </h2>
+            <div className="description">
+              {body && <MDXRenderer>{body}</MDXRenderer>}
+            </div>
           </motion.div>
-        )}
-      </StyledContentWrapper>
-    </StyledSection>
-  );
+          {showSocial && (
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={sControls}>
+              <Social
+                fontSize=".95rem"
+                padding=".3rem 1.25rem"
+                width="auto"
+                withIcon={true}
+              />
+            </motion.div>
+          )}
+        </StyledContentWrapper>
+      </StyledSection>
+    );
+  } else {
+    return (
+      <StyledSection id="hero">
+        <StyledContentWrapper>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={gControls}
+            data-testid="animated-heading"
+          >
+            <h1 className="title">
+              <div className="greetings">{frontmatter.greetings}</div>
+              {frontmatter.title}
+            </h1>
+            <h2
+              className="subtitle"
+              style={{
+                color: frontmatter.color ? frontmatter.color : "#69b4ff",
+              }}
+            >
+              {frontmatter.subtitlePrefix}{" "}
+              <AnimatedUnderlining animate={uControls} big>
+                {frontmatter.subtitle}
+              </AnimatedUnderlining>
+            </h2>
+            <div className="description">
+              {body && <MDXRenderer>{body}</MDXRenderer>}
+            </div>
+          </motion.div>
+          {showSocial && (
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={sControls}>
+              <Social
+                fontSize=".95rem"
+                padding=".3rem 1.25rem"
+                width="auto"
+                withIcon={true}
+              />
+            </motion.div>
+          )}
+        </StyledContentWrapper>
+      </StyledSection>
+    );
+  }
 };
 
 Hero.propTypes = {

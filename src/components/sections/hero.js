@@ -68,8 +68,6 @@ const AnimatedUnderlining = motion.custom(Underlining);
 const Hero = ({ content, showSocial }) => {
   const { frontmatter, body } = content[0].node;
   const { isIntroDone, darkMode } = useContext(Context).state;
-  console.log("heyy");
-  console.log(frontmatter.title);
 
   // Controls to orchestrate animations of greetings, emoji, social profiles, underlining
   const gControls = useAnimation();
@@ -105,7 +103,7 @@ const Hero = ({ content, showSocial }) => {
     };
     pageLoadSequence();
   }, [isIntroDone, darkMode, eControls, gControls, sControls, uControls]);
-
+  console.log(frontmatter.title);
   if (frontmatter.title === "I'm Edward Jung") {
     return (
       <StyledSection id="hero">

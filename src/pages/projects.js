@@ -16,7 +16,9 @@ import { seoTitleSuffix } from "../../config";
 const ProjectsPage = ({ data }) => {
   const { frontmatter } = data.index.edges[0].node;
   const { seoTitle, useSeoTitleSuffix, useSplashScreen } = frontmatter;
-
+  console.log("hello");
+  console.log(frontmatter);
+  console.log(data.hero.edges);
   const globalState = {
     // if useSplashScreen=false, we skip the intro by setting isIntroDone=true
     isIntroDone: useSplashScreen ? false : true,
@@ -24,8 +26,6 @@ const ProjectsPage = ({ data }) => {
     // will check the user's preferences and switch to dark mode if needed
     darkMode: false,
   };
-
-  console.log(data.hero);
 
   return (
     <GlobalStateProvider initialState={globalState}>
@@ -92,6 +92,13 @@ export const pageQuery = graphql`
           id
           frontmatter {
             greetings
+            greetingicon {
+              childImageSharp {
+                fluid(maxWidth: 80, quality: 90) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             title
             subtitlePrefix
             subtitle

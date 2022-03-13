@@ -6,12 +6,10 @@ import GlobalStateProvider from "../context/provider";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Hero from "../components/sections/hero";
-import Articles from "../components/sections/articles";
 import About from "../components/sections/about";
 import Interests from "../components/sections/interests";
 import Projects from "../components/sections/projects";
 import Contact from "../components/sections/contact";
-import Gallery from "../components/sections/gallery";
 import { seoTitleSuffix } from "../../config";
 
 const IndexPage = ({ data }) => {

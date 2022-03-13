@@ -93,7 +93,8 @@ export default function ProjectPost({ data }) {
 
   const post = data.mdx;
   const { frontmatter } = post;
-  const { title, subtitle, color } = frontmatter;
+  const { title, subtitle, color, icon } = frontmatter;
+ 
   return (
     <GlobalStateProvider initialState={globalState}>
       <Layout>
@@ -110,6 +111,7 @@ export default function ProjectPost({ data }) {
                       subtitle: "",
                       subtitlePrefix: subtitle,
                       color: color,
+                      icon: icon,
                     },
                     body: post.body,
                   },

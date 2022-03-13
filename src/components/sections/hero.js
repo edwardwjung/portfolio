@@ -68,7 +68,8 @@ const AnimatedUnderlining = motion.custom(Underlining);
 const Hero = ({ content, showSocial }) => {
   const { frontmatter, body } = content[0].node;
   const { isIntroDone, darkMode } = useContext(Context).state;
-  console.log(content);
+  console.log("heyy");
+  console.log(frontmatter.icon);
 
   // Controls to orchestrate animations of greetings, emoji, social profiles, underlining
   const gControls = useAnimation();
@@ -114,7 +115,18 @@ const Hero = ({ content, showSocial }) => {
           data-testid="animated-heading"
         >
           <h1 className="title">
-            <div className="greetings">{frontmatter.greetings}</div>
+            <div className="greetings">
+              {frontmatter.greetings}
+              <motion.div
+                animate={eControls}
+                style={{ originX: 0.7, originY: 0.7 }}
+              >
+                <Img
+                  className="emoji"
+                  fluid={frontmatter.greetingicon.childImageSharp.fluid}
+                />
+              </motion.div>
+            </div>
             {frontmatter.title}
           </h1>
           <h2

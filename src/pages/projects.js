@@ -128,6 +128,7 @@ export const pageQuery = graphql`
             video
             github
             presentation
+            events
             publication
             appStore
             screenshot {

@@ -376,6 +376,16 @@ const Projects = ({ content, showViewMore = true, limit = 0 }) => {
                           <SmallButton>Presentation</SmallButton>
                         </a>
                       )}
+                      {frontmatter.events && (
+                        <a
+                          href={frontmatter.events}
+                          target="_blank"
+                          rel="nofollow noopener noreferrer"
+                          aria-label="External Link"
+                        >
+                          <SmallButton>Events</SmallButton>
+                        </a>
+                      )}
                       {frontmatter.video && (
                         <a
                           href={frontmatter.video}

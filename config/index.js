@@ -1,6 +1,6 @@
 module.exports = {
   //-- SITE SETTINGS -----
-  author: "@dwardoo",
+  author: "@edwardwjung",
   siteTitle: "Edward Jung's Portfolio",
   siteShortTitle: "ej.", // Used as logo text in header, footer, and splash screen
   siteDescription: "Learn about me, my projects, my skills, and goals.",
@@ -57,11 +57,11 @@ module.exports = {
   socialMedia: [
     {
       name: "Linkedin",
-      url: "https://www.linkedin.com/in/edward-jung-91951b202/",
+      url: "https://www.linkedin.com/in/edwardwjung",
     },
     {
       name: "Github",
-      url: "https://github.com/dwardoo",
+      url: "https://github.com/edwardwjung",
     },
     {
       name: "Mail",

@@ -177,6 +177,16 @@ export default function ProjectPost({ data }) {
                     <SmallButton>Events</SmallButton>
                   </a>
                 )}
+                {frontmatter.news && (
+                  <a
+                    href={frontmatter.news}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    aria-label="External Link"
+                  >
+                    <SmallButton>News</SmallButton>
+                  </a>
+                )}
                 {frontmatter.video && (
                   <a
                     href={frontmatter.video}
@@ -237,6 +247,7 @@ export const query = graphql`
         appStore
         presentation
         events
+        news
         video
         publication
         screenshot {

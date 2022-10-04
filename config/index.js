@@ -85,6 +85,11 @@ module.exports = {
         name: "Projects",
         url: "/projects",
       },
+      {
+        name: "Blog",
+        url: "https://medium.com/@edwardwjung",
+      },
+
     ],
     button: {
       useFileName: false,

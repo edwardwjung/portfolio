@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://edwardwjung.com/sitemap/sitemap-index.xml
+Host: https://edwardwjung.com
